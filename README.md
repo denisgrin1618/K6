@@ -39,6 +39,7 @@ $ k6 run ./K6_scripts/get_ping.js
 ## Test Go Gin
 
 ```properties
-$ go run ./GO_Gin/main.go
-$ k6 run ./K6_scripts/get_ping.js
+$ cd GO_Gin
+$ go run main.go
+$ k6 run ../K6_scripts/get_ping.js
 ```
