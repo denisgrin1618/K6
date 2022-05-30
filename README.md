@@ -36,6 +36,8 @@ $ docker-compose up --build -d
 $ k6 run ./K6_scripts/get_ping.js
 ```
 
+![Laravel](./images/Laravel.jpeg)
+
 ## Test Go Gin
 
 ```properties
@@ -43,3 +45,5 @@ $ cd GO_Gin
 $ go run main.go
 $ k6 run ../K6_scripts/get_ping.js
 ```
+
+![Gin](./images/Gin.jpeg)
