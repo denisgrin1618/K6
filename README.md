@@ -5,6 +5,20 @@ https://k6.io/
 
 ## Prepare environment
 
+- Modify /etc/systemd/user.conf and /etc/systemd/system.conf with the following line (this takes care of graphical login):
+
+```
+ DefaultLimitNOFILE=65535
+```
+
+- Modify /etc/security/limits.conf with the following lines (this takes care of non-GUI login):
+
+```
+ * hard nofile 65535
+ * soft nofile 65535
+```
+
+- Reboot your computer for changes to take effect.
 - Increase open files run **ulimit -n 65535**
 - install k6
 
@@ -25,6 +39,6 @@ $ k6 run ./K6_scripts/get_ping.js
 ## Test Go Gin
 
 ```properties
-$ ./GO_Gin/example_gin
+$ go run ./GO_Gin/main.go
 $ k6 run ./K6_scripts/get_ping.js
 ```
