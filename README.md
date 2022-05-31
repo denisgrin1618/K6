@@ -29,6 +29,12 @@ $ sudo apt-get update
 $ sudo apt-get install k6
 ```
 
+## Computer
+
+- HP Elitebook 8440p
+- Intel(R) Core(TM) i5 CPU
+- RAM 8Gb
+
 ## Test PHP Laravel
 
 ```properties
