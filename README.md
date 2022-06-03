@@ -1,7 +1,6 @@
 # K6
 
 Load tests api on different platforms using K6
-https://k6.io/
 
 ## Prepare environment
 
@@ -20,15 +19,7 @@ https://k6.io/
 
 - Reboot your computer for changes to take effect.
 - Increase open files run **ulimit -n 65535**
-- install k6
-
-```properties
-$ sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
-$ echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
-$ sudo apt-get update
-$ sudo apt-get install k6
-```
-
+- install k6 https://k6.io/
 - run comand `docker-compose up --build -d`
 
 ## Computer
