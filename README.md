@@ -40,7 +40,7 @@ $ sudo apt-get install k6
 ## PHP (Laravel)
 
 ```properties
-$ k6 run ./K6_scripts/get_ping.js
+$ k6 run ./K6_scripts/php_ping.js
 ```
 
 ![Laravel](./images/Laravel.jpeg)
