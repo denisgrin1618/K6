@@ -1,5 +1,16 @@
 version: '3'
 services:
+    node:
+        build:
+            context: ./Node_Express
+            dockerfile: Dockerfile
+        image: k6_node
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "8001:8080"
+        networks:
+            - k6tests
     app:
         build:
             context: ./docker/app
