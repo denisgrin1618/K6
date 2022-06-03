@@ -10,18 +10,27 @@ services:
         ports:
             - "8001:8080"
         networks:
-            - k6tests
-    app:
+            - k6tests           
+    go:
         build:
-            context: ./docker/app
+            context: ./GO_Gin
+            dockerfile: Dockerfile
+        image: k6_go
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "8002:8080"
+        networks:
+            - k6tests
+    php:
+        build:
+            context: ./PHP_Laravel/docker/app
             dockerfile: Dockerfile
         image: k6_laravel_app
         restart: unless-stopped
         tty: true
-        ports:
-            - "6001:6001"
         environment:
-            SERVICE_NAME: app
+            SERVICE_NAME: php
             SERVICE_TAGS: dev
         working_dir: /var/www/html
         volumes:
@@ -31,15 +40,15 @@ services:
             - k6tests
     nginx:
         build:
-            context: ./docker/nginx
+            context: ./PHP_Laravel/docker/nginx
             dockerfile: Dockerfile
         image: k6_laravel_nginx
         restart: unless-stopped
         tty: true
         depends_on:
-            - app
+            - php
         ports:
-            - "8080:80"
+            - "8003:80"
             - "443:443"
         volumes:
             - "./PHP_Laravel/public:/var/www/html/public:ro"
@@ -49,8 +58,6 @@ services:
     mysql:
         image: 'mysql/mysql-server:8.0'
         restart: unless-stopped
-        ports:
-            - '${FORWARD_DB_PORT:-8001}:3306'
         environment:
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ROOT_HOST: "%"
@@ -63,19 +70,19 @@ services:
         networks:
             - k6tests
        
-    adminer:
-        image: 'adminer:latest'
-        restart: unless-stopped
-        ports:
-            - 8003:8080
-        environment:
-            MYSQL_USERNAME: "${DB_USERNAME}"
-            MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
-            PMA_HOST: mysql
-        depends_on:
-            - mysql
-        networks:
-            - k6tests
+    # adminer:
+    #     image: 'adminer:latest'
+    #     restart: unless-stopped
+    #     ports:
+    #         - 8003:8080
+    #     environment:
+    #         MYSQL_USERNAME: "${DB_USERNAME}"
+    #         MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+    #         PMA_HOST: mysql
+    #     depends_on:
+    #         - mysql
+    #     networks:
+    #         - k6tests
 
 networks:
     k6tests:

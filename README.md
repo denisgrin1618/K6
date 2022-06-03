@@ -29,6 +29,8 @@ $ sudo apt-get update
 $ sudo apt-get install k6
 ```
 
+- run comand `docker-compose up --build -d`
+
 ## Computer
 
 - HP Elitebook 8440p
@@ -38,7 +40,6 @@ $ sudo apt-get install k6
 ## PHP (Laravel)
 
 ```properties
-$ docker-compose up --build -d
 $ k6 run ./K6_scripts/get_ping.js
 ```
 
@@ -47,9 +48,7 @@ $ k6 run ./K6_scripts/get_ping.js
 ## Go (Gin)
 
 ```properties
-$ cd GO_Gin
-$ go run main.go
-$ k6 run ../K6_scripts/get_ping.js
+$ k6 run ../K6_scripts/go_ping.js
 ```
 
 ![Gin](./images/Gin.jpeg)
@@ -57,8 +56,7 @@ $ k6 run ../K6_scripts/get_ping.js
 ## Node (Express)
 
 ```properties
-$ docker-compose up --build -d
-$ k6 run ../K6_scripts/get_ping.js
+$ k6 run ../K6_scripts/node_ping.js
 ```
 
 ![Gin](./images/Express.jpeg)

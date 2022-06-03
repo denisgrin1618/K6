@@ -6,6 +6,7 @@ export const options = {
   duration: '10s',
 };
 
+
 export default function () {
   http.get('http://localhost:8001/ping');
   sleep(1);
